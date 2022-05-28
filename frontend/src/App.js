@@ -1,7 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Tweet } from 'react-twitter-widgets';
+import { Tweet, Timeline } from 'react-twitter-widgets';
+
 
 function App() {
 
@@ -20,14 +21,26 @@ function App() {
   }, []);
 
   return (
-    <div className="tweets">
-      {
-        IDs.map((id, key) => {
-          return (
-            <Tweet tweetId={id} key={key} />
-          )
-        })
-      }
+    <div className='app'>
+      <header>
+        <img src={require('./assets/twitter-logo.png')} id='logo' />
+        <h1>Tweet <strong>Finder</strong></h1>
+      </header>
+      <main>
+        <div className="tweets">
+          <Timeline
+            dataSource={{
+              sourceType: 'profile',
+              screenName: 'kanyewest'
+            }}
+          />
+        </div>
+        <form>
+          <label for="user-name"> Enter twitter username:</label>
+          <input type="text" id="user-name" name="user-name" />
+          <button> Submit </button>
+        </form>
+      </main>
     </div>
   );
 }

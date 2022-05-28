@@ -30,7 +30,7 @@ def index():
 
 
 @app.get("/users/{user}/tweets")
-def req_user(user):
+async def req_user(user):
     results = list(api.search_tweets(q=user))
     dicts = []
     for result in results:
